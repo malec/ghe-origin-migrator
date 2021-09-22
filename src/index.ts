@@ -1,7 +1,5 @@
-import fs from 'fs-extra';
 import Logger from 'jet-logger';
 import * as childProcess from 'child_process';
-import { exists } from 'fs';
 
 const logger = new Logger();
 function exec(cmd: string, loc: string): Promise<string> {
