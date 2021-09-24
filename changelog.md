@@ -1,4 +1,4 @@
-# changelog.md
+# Changelog
 
 ## 1.1 - 2021-09-24:
  - Remove company specific urls
