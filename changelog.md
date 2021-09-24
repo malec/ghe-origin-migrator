@@ -4,6 +4,6 @@
  - Remove company specific urls
  - Add commander to help users supply details
 
-# 1.0 - 2021-09-22
+## 1.0 - 2021-09-22
 
  -  Initial release
