@@ -38,6 +38,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var jet_logger_1 = require("jet-logger");
 var childProcess = require("child_process");
+var commander_1 = require("commander");
+commander_1.program.version('1.1');
+commander_1.program.addArgument(new commander_1.Argument('sourceUrl', 'url of the enterprise git server Ex. ghe.yourCompany.com'));
+commander_1.program.addArgument(new commander_1.Argument('targetUrl', 'destination to migrate to. Ex. github.com'));
+commander_1.program.addArgument(new commander_1.Argument('sourceOrg', 'org to migrate from. Ex. ***REMOVED***'));
+commander_1.program.addArgument(new commander_1.Argument('targetOrg', 'org to migrate to. Ex. ***REMOVED***'));
+commander_1.program.option('-d, --workdir <string>', 'target url to migrate to', './');
+commander_1.program.parse();
 var logger = new jet_logger_1["default"]();
 function exec(cmd, loc) {
     return new Promise(function (res, rej) {
@@ -52,48 +60,40 @@ function exec(cmd, loc) {
         });
     });
 }
-var main = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var projectRoot, dirRes, dirs;
+var main = function (projectRoot, sourceUrl, targetUrl, sourceOrg, targetOrg) { return __awaiter(void 0, void 0, void 0, function () {
+    var dirRes, dirs;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                projectRoot = process.argv[2] || '..';
-                return [4 /*yield*/, exec('ls -d */', projectRoot)];
+            case 0: return [4 /*yield*/, exec('ls -d */', projectRoot)];
             case 1:
                 dirRes = _a.sent();
                 dirs = dirRes.trim().split('\n');
                 dirs.forEach(function (dir) { return __awaiter(void 0, void 0, void 0, function () {
-                    var _a, _b, _c, origin_1, e_1;
-                    return __generator(this, function (_d) {
-                        switch (_d.label) {
+                    var origin_1, e_1;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
                             case 0:
-                                _d.trys.push([0, 5, , 6]);
-                                _b = (_a = logger).info;
-                                _c = 'pwd: ';
-                                return [4 /*yield*/, exec('pwd', projectRoot + "/" + dir)];
-                            case 1: return [4 /*yield*/, _b.apply(_a, [_c + (_d.sent())])];
-                            case 2:
-                                _d.sent();
+                                _a.trys.push([0, 3, , 4]);
                                 return [4 /*yield*/, exec("git remote get-url origin", projectRoot + "/" + dir)];
-                            case 3:
-                                origin_1 = _d.sent();
-                                logger.info('origin ' + origin_1);
-                                if (!origin_1.includes('***REMOVED***:***REMOVED***')) {
-                                    logger.warn("can't migrate repo " + dir);
+                            case 1:
+                                origin_1 = _a.sent();
+                                if (!origin_1.includes(sourceUrl)) {
+                                    logger.info("skipping directory " + dir);
                                     return [2 /*return*/];
                                 }
-                                origin_1 = origin_1.replace('***REMOVED***:***REMOVED***', 'github.com:***REMOVED***');
+                                origin_1 = origin_1.replace(sourceUrl + ":" + sourceOrg, targetUrl + ":" + targetOrg);
                                 return [4 /*yield*/, exec("git remote set-url origin " + origin_1, projectRoot + "/" + dir)];
-                            case 4:
-                                _d.sent();
-                                return [3 /*break*/, 6];
-                            case 5:
-                                e_1 = _d.sent();
+                            case 2:
+                                _a.sent();
+                                logger.info("migrated " + dir + "!");
+                                return [3 /*break*/, 4];
+                            case 3:
+                                e_1 = _a.sent();
                                 if (e_1.toString().includes('not a git repository')) {
                                     return [2 /*return*/];
                                 }
                                 throw e_1;
-                            case 6: return [2 /*return*/];
+                            case 4: return [2 /*return*/];
                         }
                     });
                 }); });
@@ -101,4 +101,5 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
         }
     });
 }); };
-main();
+var _a = commander_1.program.opts(), workdir = _a.workdir, sourceUrl = _a.sourceUrl, targetUrl = _a.targetUrl, sourceOrg = _a.sourceOrg, targetOrg = _a.targetOrg;
+main(workdir, sourceUrl, targetUrl, sourceOrg, targetOrg);
