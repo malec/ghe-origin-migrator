@@ -1,20 +1,27 @@
 # ghe origin migrator
-build from source using node or use executable. first option is the directory of repos, default is parent.
+
+Build from source using node or use executables provided.
+
+Program will look for remotes in your local git repos and change those remotes to another location.
+
+## Installing
+
+clone the repo in your workdir
 
 ## Usage
 
-clone the repo in your ***REMOVED*** workdir
+`index [options] <sourceUrl> <targetUrl> <sourceOrg> <targetOrg>`
 
-cd into project dir and run this command:
+refer to `./index --help` for more help
 
-`./index-{replace with your platform and optional extension (.exe, nothing for linux and macos, but you may have to chmod +x {filename})}`
+or
 
-program will look for git repos with ***REMOVED*** origin in the parent directory and change them to ***REMOVED*** internal on github.com
+`yarn install && yarn start`
 
 ## Hashes
 
-linux SHA256: `17DFCBADB5BA2AD0C3EC98B9B2E7ED66763E1F1DAEE263958E6D70FAC2CCC0EF`
+linux SHA256: `664D477E9B0A4D3C625BE2B41E0CCFDE84C6E190F39D61EE25F888ECC39CA062`
 
-mac SHA256: `D6AF7B914341552DD695EDBCBCC3E527F181393C223288623812D92CB30CD348`
+mac SHA256: `5951A19FF95448C599D8E90A993F0BA8F39121B02B82FE653ECB4921602C2C7E`
 
-windows SHA256: `1AB76BC16360F1F352B7AFFCE3FFE2399366490375DFBB5C6E2FC29BE0F30BF1`
+windows SHA256: `23524E3B504016B8D0EC7ED7076AE491D9A7E62A7453769EED6C8B3B87ECB14C`
