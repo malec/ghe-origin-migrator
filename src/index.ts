@@ -7,7 +7,7 @@ program.addArgument(new Argument('sourceUrl', 'url of the enterprise git server 
 program.addArgument(new Argument('targetUrl', 'destination to migrate to. Ex. github.com'))
 program.addArgument(new Argument('sourceOrg', 'org to migrate from. Ex. ***REMOVED***'))
 program.addArgument(new Argument('targetOrg', 'org to migrate to. Ex. ***REMOVED***'))
-program.option('-d, --workdir <string>', 'target url to migrate to', './')
+program.option('-d, --workdir <string>', 'target url to migrate to', '../')
 program.parse();
 const logger = new Logger();
 function exec(cmd: string, loc: string): Promise<string> {
