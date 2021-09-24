@@ -2,7 +2,7 @@ import Logger from 'jet-logger';
 import * as childProcess from 'child_process';
 import { program, Argument } from 'commander';
 
-program.version('1.2');
+program.version('1.3');
 program.addArgument(new Argument('sourceUrl', 'url of the enterprise git server Ex. ghe.yourCompany.com'))
 program.addArgument(new Argument('targetUrl', 'destination to migrate to. Ex. github.com'))
 program.addArgument(new Argument('sourceOrg', 'org to migrate from. Ex. oldOrg'))
