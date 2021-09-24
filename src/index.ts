@@ -5,8 +5,8 @@ import { program, Argument } from 'commander';
 program.version('1.2');
 program.addArgument(new Argument('sourceUrl', 'url of the enterprise git server Ex. ghe.yourCompany.com'))
 program.addArgument(new Argument('targetUrl', 'destination to migrate to. Ex. github.com'))
-program.addArgument(new Argument('sourceOrg', 'org to migrate from. Ex. ***REMOVED***'))
-program.addArgument(new Argument('targetOrg', 'org to migrate to. Ex. ***REMOVED***'))
+program.addArgument(new Argument('sourceOrg', 'org to migrate from. Ex. oldOrg'))
+program.addArgument(new Argument('targetOrg', 'org to migrate to. Ex. YourCompanyInternal'))
 program.option('-d, --workdir <string>', 'target url to migrate to', '..')
 program.parse();
 const logger = new Logger();
