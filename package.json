@@ -7,7 +7,7 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon --exec node --inspect -r ts-node/register src/index.ts ghe.yourOrg.com github.com yourOldOrg yourNewOrg",
     "build": "tsc --build tsconfig.json",
-    "pkg": "pkg build/index.js"
+    "pkg": "pkg build/index.js --no-bytecode"
   },
   "keywords": [],
   "author": "",
