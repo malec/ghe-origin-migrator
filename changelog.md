@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4 - 2021-09-27:
+ - Cleanup, performance improvements
+
 ## 1.3 - 2021-09-24:
  - Make program more generic to other companies
 

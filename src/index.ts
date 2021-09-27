@@ -11,12 +11,6 @@ program.option('-d, --workdir <string>', 'target url to migrate to', '..')
 program.parse();
 const logger = new Logger();
 
-const sleep = async (timeout: number) => {
-  await new Promise((res) => {
-    setTimeout(res, timeout);
-  })
-}
-
 function exec(cmd: string, loc: string): Promise<string> {
   return new Promise((res, rej) => {
     return childProcess.exec(cmd, { cwd: loc }, (err, stdout, stderr) => {
@@ -36,7 +30,6 @@ function exec(cmd: string, loc: string): Promise<string> {
 
 const main = async (projectRoot: string, sourceUrl: string, targetUrl: string, sourceOrg: string, targetOrg: string) => {
   let migrated = 0;
-  await sleep(3000);
   const dirRes = await exec('ls -d */', projectRoot);
   const dirs = dirRes.trim().split('\n');
   for (const dir of dirs) {
@@ -58,4 +51,4 @@ const main = async (projectRoot: string, sourceUrl: string, targetUrl: string, s
 
 const { workdir } = program.opts();
 const [sourceUrl, targetUrl, sourceOrg, targetOrg] = program.args;
-main(workdir, sourceUrl, targetUrl, sourceOrg, targetOrg).catch(x => console.log('x', x));
+main(workdir, sourceUrl, targetUrl, sourceOrg, targetOrg);
