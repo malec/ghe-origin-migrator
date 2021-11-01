@@ -12,7 +12,7 @@ run `yarn`
 
 ## Usage
 
-`index [options] <sourceUrl> <targetUrl> <sourceOrg> <targetOrg>`
+`./index [options] <sourceUrl> <targetUrl> <sourceOrg> <targetOrg>`
 
 refer to `./index --help` for more help
 
