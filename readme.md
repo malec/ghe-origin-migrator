@@ -6,16 +6,19 @@ Program will look for remotes in your local git repos and change those remotes t
 
 ## Installing
 
-clone the repo in your workdir
-
-run `yarn`
+clone the repo in your enterprise workdir, with your other enterprise repositories
 
 ## Usage
 
 `./index [options] <sourceUrl> <targetUrl> <sourceOrg> <targetOrg>`
 
-refer to `./index --help` for more help
+refer to `./index --help` for more help and examples
 
 or
+
+First, install dependencies to start by running 
+`yarn` or `npm install`
+
+and
 
 `yarn start`
